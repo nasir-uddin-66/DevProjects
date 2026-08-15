@@ -1,0 +1,153 @@
+<%- layout("./layouts/boilerplate") %>
+
+<style>
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter {
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    font-size: small;
+    opacity: 0.7;
+  }
+
+  .change-cursor:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  #tax-toggler{
+    border: 1px solid rgb(56, 53, 53);
+    height: 1.75rem;
+    width: 11rem;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  #tax-box {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+  }
+
+  .vat-option {
+    display: none;
+  }
+
+</style>
+
+<body>
+  <!-- <h3 class="mt-3">All Listings</h3> -->
+  <div id="filters">
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Mountains</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-water-ladder"></i></div>
+      <p>Pool</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-place-of-worship"></i></div>
+      <p>Castles</p>
+    </div>
+
+    <!-- <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Pool</p>
+    </div> -->
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-cow"></i></div>
+      <p>Farm</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-snowflake"></i></div>
+      <p>Arctic</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-tree-city"></i></div>
+      <p>Amazing Cities</p>
+    </div>
+
+    <div class="filter change-cursor">
+      <div><i class="fa-solid fa-city"></i></i></div>
+      <p>Cities</p>
+    </div>
+
+
+    <div id="tax-box">
+      <div class="form-check form-switch" id="tax-toggler">
+        <input class="form-check-input change-cursor" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label change-cursor mx-2" for="flexSwitchCheckDefault">Show total after taxes</label>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
+    <% for (let item of allListing) { %>
+    <a href="/listings/<%= item._id %>" class="text-decoration-none">
+      <div class="card col">
+        <img
+          src="<%= item.image.url %>"
+          class="card-img-top my-2"
+          alt="listing-image"
+          style="height: 19rem"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= item.title %></b> <br />
+            &#2547; <%= item.price.toLocaleString("en-BD") %> / night
+            &nbsp;&nbsp; <i class="vat-option">+18% VAT</i>
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <% } %>
+  </div>
+</body>
+
+
+<script>
+
+  const taxBtn = document.querySelector("#flexSwitchCheckDefault");
+  taxBtn.addEventListener("click", () => {
+    let vatOptions = document.querySelectorAll(".vat-option");
+    
+    for(let vatOption of vatOptions){
+      if(vatOption.style.display != "inline") {
+        vatOption.style.display = "inline";
+      } else {
+        vatOption.style.display = "none";
+      }
+  }
+  })
+
+</script>

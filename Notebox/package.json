@@ -1,0 +1,20 @@
+{
+  "name": "notebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend/notebox && npm run build --prefix frontend/notebox",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nasir-uddin-66/notebox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nasir-uddin-66/notebox/issues"
+  },
+  "homepage": "https://github.com/nasir-uddin-66/notebox#readme"
+}
